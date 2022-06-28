@@ -1,0 +1,15 @@
+GET http://localhost:3030/rsvp
+
+###
+
+POST http://localhost:3030/rsvp
+Content-Type: application/json
+
+{
+    "name": "Raed Gibran",
+    "isAttending": "Ya",
+    "phoneNumber": "0172727305",
+    "guestType": "Kawan pengantin",
+    "paxCount": "3",
+    "timeSlot": "12pm"
+}

@@ -34,7 +34,7 @@ if ('geolocation' in navigator) {
       },
       body: JSON.stringify(data)
     };
-    const db_response = await fetch('/api', options);
+    const db_response = await fetch('/api/rsvp', options);
     const db_json = await db_response.json();
     console.log(db_json);
   });
