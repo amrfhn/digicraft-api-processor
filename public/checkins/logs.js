@@ -10,7 +10,7 @@ tiles.addTo(mymap);
 getData();
 
 async function getData() {
-  const response = await fetch('/api');
+  const response = await fetch('/api/rsvp');
   const data = await response.json();
 
   for (item of data) {
