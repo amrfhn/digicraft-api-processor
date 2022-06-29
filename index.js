@@ -9,7 +9,7 @@ app.use(express.json())
 const db = mongoose.connection;
 
 const port = process.env.PORT || 3030;
-const password = process.env.DB_PASSWORD;
+const password = 'Farhan94';
 
 mongoose.connect(
   `mongodb+srv://digicraftAdmin:${password}@digicraft-central.rjug2zb.mongodb.net/rsvpListing?retryWrites=true&w=majority`,
