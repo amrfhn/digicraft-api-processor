@@ -27,6 +27,10 @@ db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));
 
 app.listen(port, () => console.log('Server started'));
+app.on('clientError', (err, socket) => {
+  console.error(err);
+  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+});
 
 const rsvpRouter = require('./routes/rsvp')
 app.use('/rsvp', rsvpRouter);
