@@ -1,10 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const sslRedirect = require('heroku-ssl-redirect').default;
 require('dotenv').config()
 
 const app = express();
-app.use(sslRedirect());
 app.use(express.static('public'));
 app.use(express.json())
 
