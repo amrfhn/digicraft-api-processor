@@ -13,3 +13,12 @@ Content-Type: application/json
     "paxCount": "3",
     "timeSlot": "12pm"
 }
+
+###
+
+POST http://localhost:3030/ucapan
+
+{
+    "name": "Fifi",
+    "ucapan": "Selamat pengantin baru."
+}

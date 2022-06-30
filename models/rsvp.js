@@ -7,23 +7,27 @@ const rsvpSchema = new mongoose.Schema({
     },
     isAttending: {
         type: String,
-        required: true
+        required: false
     },
     phoneNumber: {
         type: String,
-        required: true
+        required: false
     },
     guestType: {
         type: String,
-        required: true
+        required: false
     },
     paxCount: {
         type: String,
-        required: true
+        required: false
     },
     timeSlot: {
         type: String,
-        required: true
+        required: false
+    },
+    message: {
+        type: String,
+        required: false
     }
 })
 

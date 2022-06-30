@@ -21,7 +21,8 @@ router.post('/', async (req,res) => {
         phoneNumber: req.body.phoneNumber,
         guestType: req.body.guestType,
         paxCount: req.body.paxCount,
-        timeSlot: req.body.timeSlot
+        timeSlot: req.body.timeSlot,
+        message: req.body.message
     })
 
     try {
