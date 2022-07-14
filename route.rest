@@ -1,8 +1,12 @@
-GET http://localhost:3030/rsvp
+GET http://localhost:3030/api/rsvp
 
 ###
 
-POST http://localhost:3030/rsvp
+GET http://localhost:3030/wish
+
+###
+
+POST http://localhost:3030/api/rsvp
 Content-Type: application/json
 
 {

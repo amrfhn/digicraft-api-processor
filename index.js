@@ -30,8 +30,8 @@ mongoose.connect(
 
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to Database'));
-
 app.listen(port, () => console.log('Server started'));
 
-const rsvpRouter = require('./routes/rsvp') 
-app.use('/rsvp', rsvpRouter);
+/** Settings available routers for digicraft-api-processor DB **/
+app.use('/api/rsvp', require('./routes/rsvp'));
+app.use('/api/wish', require('./routes/wish') );
