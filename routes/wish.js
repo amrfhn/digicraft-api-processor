@@ -11,4 +11,18 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.post('/', async (req, res) => {
+    const wishCardList = new Wish({
+        name: req.body.name,
+        message: req.body.message
+    })
+
+    try {
+        const newWish = await wishCardList.save();
+        res.status(201).json(newWish);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+})
+
 module.exports = router;

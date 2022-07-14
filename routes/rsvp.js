@@ -22,7 +22,6 @@ router.post('/', async (req,res) => {
         guestType: req.body.guestType,
         paxCount: req.body.paxCount,
         timeSlot: req.body.timeSlot,
-        message: req.body.message
     })
 
     try {

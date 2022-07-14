@@ -24,10 +24,6 @@ const rsvpSchema = new mongoose.Schema({
     timeSlot: {
         type: String,
         required: false
-    },
-    message: {
-        type: String,
-        required: false
     }
 })
 
