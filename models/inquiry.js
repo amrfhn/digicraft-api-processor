@@ -20,6 +20,10 @@ const inquirySchema = new mongoose.Schema({
     description: {
         type: String,
         required: true
+    },
+    timestamp: {
+        type: String,
+        required: false
     }
 })
 

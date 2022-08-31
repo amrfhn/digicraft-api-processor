@@ -9,7 +9,8 @@ router.post('/', async (req, res) => {
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         subject: req.body.subject,
-        description: req.body.description
+        description: req.body.description,
+        timestamp: req.body.timestamp
     })
 
     try {
