@@ -6,16 +6,15 @@ GET http://localhost:3030/wish
 
 ###
 
-POST http://localhost:3030/api/rsvp
+POST http://localhost:3030/api/inquiry
 Content-Type: application/json
 
 {
-    "name": "Raed Gibran",
-    "isAttending": "Ya",
+    "name": "Raed",
+    "email": "Ya",
     "phoneNumber": "0172727305",
-    "guestType": "Kawan pengantin",
-    "paxCount": "3",
-    "timeSlot": "12pm"
+    "subject": "Kawan pengantin",
+    "description": "3"
 }
 
 ###
