@@ -1,4 +1,4 @@
-GET http://localhost:3030/api/rsvp
+GET http://localhost:3030/rsvp
 
 ###
 
@@ -11,11 +11,10 @@ Content-Type: application/json
 
 {
     "name": "Raed Gibran",
-    "isAttending": "Ya",
     "phoneNumber": "0172727305",
     "guestType": "Kawan pengantin",
-    "paxCount": "3",
-    "timeSlot": "12pm"
+    "numberPax": "4",
+    "timeslot": "12pm"
 }
 
 ###

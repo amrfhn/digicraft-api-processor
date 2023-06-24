@@ -17,11 +17,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req,res) => {
     const rsvpList = new Rsvp({
         name: req.body.name,
-        isAttending: req.body.isAttending,
         phoneNumber: req.body.phoneNumber,
         guestType: req.body.guestType,
-        paxCount: req.body.paxCount,
-        timeSlot: req.body.timeSlot,
+        numberPax: req.body.numberPax,
+        timeSlot: req.body.timeslot,
     })
 
     try {
@@ -29,7 +28,7 @@ router.post('/', async (req,res) => {
         res.status(201).json(newRsvp);
     } catch (error) {
         res.status(400).json({ message: error.message });
-    }
+    } 
 })
 // Updating one
 // Deleting one

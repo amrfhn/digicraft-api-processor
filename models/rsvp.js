@@ -5,10 +5,6 @@ const rsvpSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isAttending: {
-        type: String,
-        required: false
-    },
     phoneNumber: {
         type: String,
         required: false
@@ -17,14 +13,14 @@ const rsvpSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    paxCount: {
+    numberPax: {
         type: String,
         required: false
     },
-    timeSlot: {
+    timeslot: {
         type: String,
         required: false
-    }
+    },
 })
 
 module.exports = mongoose.model('Rsvp', rsvpSchema)
