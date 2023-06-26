@@ -5,7 +5,7 @@ require('dotenv').config()
 
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:3000", "https://digital-invite-202301.digicraft.link"],
+  // origin: ["http://localhost:3000", "https://digital-invite-202301.digicraft.link"],
   methods: ['GET', 'POST']
 }))
 
@@ -37,4 +37,11 @@ app.listen(port, () => console.log('Server started'));
 
 /** Settings available routers for digicraft-api-processor DB **/
 app.use('/api/rsvp', require('./routes/rsvp'));
-app.use('/api/wish', require('./routes/wish') );
+app.use('/api/wish', require('./routes/wish'));
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://digicraft.link");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+})
