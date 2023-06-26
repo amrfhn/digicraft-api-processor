@@ -1,18 +1,13 @@
 {
-  "name": "module3",
+  "name": "Digicraft API Digital Invite 202301",
   "version": "1.0.0",
-  "description": "This is a version of 'weather here' app by Joey Lee.",
+  "description": "Node Express",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "weather",
-    "api",
-    "selfie"
-  ],
-  "author": "Daniel Shiffman",
+  "author": "Amir Jefri",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
