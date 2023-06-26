@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 const Rsvp = require('../models/rsvp');
 
 // Getting all
-router.get('/', async (req, res) => {
+router.get('/', cors(), async (req, res) => {
     try {
         const rsvpList = await Rsvp.find()
         res.json(rsvpList);
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 })
 // Getting one
 // Creating one
-router.post('/', async (req,res) => {
+router.post('/', cors(), async (req,res) => {
     const rsvpList = new Rsvp({
         name: req.body.name,
         phoneNumber: req.body.phoneNumber,
