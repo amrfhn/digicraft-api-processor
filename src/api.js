@@ -5,8 +5,8 @@ require('dotenv').config()
 
 const app = express();
 app.use(cors({
-  // origin: ["http://localhost:3000", "https://digital-invite-202301.digicraft.link"],
-  methods: ['GET', 'POST']
+    // origin: ["http://localhost:3000", "https://digital-invite-202301.digicraft.link"],
+    methods: ['GET', 'POST']
 }))
 
 app.use(express.static('public'));
@@ -20,13 +20,13 @@ const username = process.env.DB_USERNAME;
 const db_name = process.env.DB_NAME;
 
 mongoose.connect(
-  `mongodb+srv://${username}:${password}@digicraft-central.rjug2zb.mongodb.net/${db_name}?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    tlsInsecure: true
-    // serverApi: ServerApiVersion.v1,
-  }
+    `mongodb+srv://${username}:${password}@digicraft-central.rjug2zb.mongodb.net/${db_name}?retryWrites=true&w=majority`,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        tlsInsecure: true
+        // serverApi: ServerApiVersion.v1,
+    }
 );
 
 
@@ -36,5 +36,7 @@ db.once('open', () => console.log('Connected to Database'));
 app.listen(port, () => console.log('Server started'));
 
 /** Settings available routers for digicraft-api-processor DB **/
-app.use('/api/rsvp', require('./routes/rsvp'));
-app.use('/api/wish', require('./routes/wish'));
+app.use('/api/rsvp', require('../routes/rsvp'));
+app.use('/api/wish', require('../routes/wish'));
+
+module.exports.handler = serverless(app);
