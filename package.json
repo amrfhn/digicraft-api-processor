@@ -5,11 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "start:build": "node ./dist/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dev": "webpack --config webpack.dev.js --mode development",
-    "build:prod": "webpack --config webpack.prod.js --mode production",
-    "start:lambda": "netlify-lambda build src"
+    "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "author": "Amir Jefri",
   "license": "MIT",
