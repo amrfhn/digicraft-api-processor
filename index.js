@@ -19,6 +19,8 @@ const password = process.env.DB_PASSWORD;
 const username = process.env.DB_USERNAME;
 const db_name = process.env.DB_NAME;
 
+mongoose.set("strictQuery", false);
+
 mongoose.connect(
   `mongodb+srv://${username}:${password}@digicraft-central.rjug2zb.mongodb.net/${db_name}?retryWrites=true&w=majority`,
   {
