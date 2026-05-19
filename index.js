@@ -53,6 +53,7 @@ const db_name = process.env.DB_NAME || '';
 
 console.log(process.env.DB_PASSWORD, process.env.DB_USERNAME, process.env.DB_NAME);
 console.log(port, password, username, db_name);
+console.log(`mongodb+srv://${username}:${password}@digicraft-central.rjug2zb.mongodb.net/${db_name}?retryWrites=true&w=majority&appName=digicraft-central`)
 
 mongoose.set("strictQuery", false);
 mongoose.connect(
