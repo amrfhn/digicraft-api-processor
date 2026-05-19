@@ -24,7 +24,7 @@ const defaultOrigins = [
   "http://localhost:8082",
   "https://digital-invite-202301.digicraft.link",
   "https://digital-invite-202401.digicraft.link",
-  "https://digital-invite.digicraft.link",
+  "https://invite.digicraft.link",
 ];
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
@@ -50,6 +50,9 @@ const port = process.env.PORT || 3030;
 const password = encodeURIComponent(process.env.DB_PASSWORD || '');
 const username = encodeURIComponent(process.env.DB_USERNAME || '');
 const db_name = process.env.DB_NAME || '';
+
+console.log(process.env.DB_PASSWORD, process.env.DB_USERNAME, process.env.DB_NAME);
+console.log(port, password, username, db_name);
 
 mongoose.set("strictQuery", false);
 mongoose.connect(
