@@ -65,6 +65,15 @@ db.on('error', (error) => console.error('MongoDB error:', error.message));
 db.once('open', () => console.log('Connected to Database'));
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
+/** API key authentication middleware **/
+const requireApiKey = (req, res, next) => {
+  const key = req.headers['x-api-key'];
+  if (!process.env.API_KEY || key !== process.env.API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+};
+
 /** Settings available routers for digicraft-api-processor DB **/
-app.use('/api/rsvp', require('./routes/rsvp'));
-app.use('/api/wish', require('./routes/wish'));
+app.use('/api/rsvp', requireApiKey, require('./routes/rsvp'));
+app.use('/api/wish', requireApiKey, require('./routes/wish'));
