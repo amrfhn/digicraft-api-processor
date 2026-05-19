@@ -21,8 +21,24 @@ app.use(
   })
 );
 
+const defaultOrigins = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://digital-invite-202301.digicraft.link",
+  "https://digital-invite-202401.digicraft.link",
+  "https://digital-invite.digicraft.link",
+];
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+  : defaultOrigins;
+
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001", "https://digital-invite-202301.digicraft.link", "https://digital-invite-202401.digicraft.link", "https://digital-invite.digicraft.link"],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS: origin ${origin} not allowed`));
+  },
   methods: ['GET', 'POST', 'DELETE'],
   credentials: true,
 }))
@@ -38,14 +54,12 @@ const username = process.env.DB_USERNAME;
 const db_name = process.env.DB_NAME;
 
 mongoose.set("strictQuery", false);
-// mongodb+srv://digicraftAdmin:<db_password>@digicraft-central.rjug2zb.mongodb.net/?retryWrites=true&w=majority&appName=digicraft-central
 mongoose.connect(
   `mongodb+srv://${username}:${password}@digicraft-central.rjug2zb.mongodb.net/${db_name}?retryWrites=true&w=majority&appName=digicraft-central`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     tlsInsecure: true
-    // serverApi: ServerApiVersion.v1,
   }
 );
 
@@ -59,5 +73,5 @@ app.use('/api/wish', require('./routes/wish'));
 
 // Enable HMR
 if (module.hot) {
-  module.hot.accept(); // Accept updated modules without a full reload
+  module.hot.accept();
 }
