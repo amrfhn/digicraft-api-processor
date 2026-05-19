@@ -1,22 +1,12 @@
 const mongoose = require('mongoose');
 
 const wishSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    message: {
-        type: String,
-        required: true
-    },
-    createdAt: { 
-        type: Date, 
-        default: Date.now 
-    },
-    projectId: {
-        type: String,
-        required: true,
-    }    
+    projectId: { type: String, required: true },
+    name: { type: String, required: true },
+    message: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = wishSchema
+wishSchema.index({ projectId: 1, createdAt: -1 });
+
+module.exports = mongoose.model('Wish', wishSchema);

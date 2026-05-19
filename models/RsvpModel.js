@@ -1,36 +1,15 @@
 const mongoose = require('mongoose');
 
 const rsvpSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    phoneNumber: {
-        type: String,
-        required: false
-    },
-    guestType: {
-        type: String,
-        required: false
-    },
-    numberPax: {
-        type: Number,
-        required: false
-    },
-    timeslot: {
-        type: String,
-        required: false
-    },
-    projectId: {
-        type: String,
-        required: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
-})
+    projectId: { type: String, required: true },
+    name: { type: String, required: true },
+    phoneNumber: { type: String },
+    guestType: { type: [String] },
+    numberPax: { type: Number },
+    timeslot: { type: String },
+    createdAt: { type: Date, default: Date.now }
+});
 
-// const RsvpModel = mongoose.model('RsvpModel', rsvpSchema)
+rsvpSchema.index({ projectId: 1, createdAt: -1 });
 
-module.exports = rsvpSchema
+module.exports = mongoose.model('Rsvp', rsvpSchema);

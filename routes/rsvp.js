@@ -1,10 +1,42 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router();
-const rsvpSchema = require('../models/RsvpModel');
+const Rsvp = require('../models/RsvpModel');
 
-const isTableExists = require('../utils/validateTable');
-const getModel = require('../utils/validateModel');
+// GET all RSVPs for a project
+router.get('/:projectId', async (req, res) => {
+    try {
+        const records = await Rsvp
+            .find({ projectId: req.params.projectId })
+            .sort({ createdAt: -1 });
+        res.status(200).json({ data: records });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// POST new RSVP for a project
+router.post('/:projectId', async (req, res) => {
+    try {
+        const doc = await Rsvp.create({ ...req.body, projectId: req.params.projectId });
+        res.status(201).json({ message: 'RSVP added successfully', data: doc });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// DELETE an RSVP
+router.delete('/:projectId/:id', async (req, res) => {
+    try {
+        const result = await Rsvp.deleteOne({ _id: req.params.id, projectId: req.params.projectId });
+        if (result.deletedCount === 0) return res.status(404).json({ message: 'Not found' });
+        res.status(200).json({ message: 'Deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+module.exports = router;
+
 
 // Getting all based on collectionId (tableName)
 router.get('/:collectionId', async (req, res) => {

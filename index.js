@@ -1,29 +1,27 @@
 const express = require("express")
-const webpack = require('webpack')
-const webpackConfig = require('./webpack.config')
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
 const cors = require('cors')
 const mongoose = require("mongoose")
 require('dotenv').config()
 
 const app = express()
-const compiler = webpack(webpackConfig)
 
-// Enable webpack-hot-middleware
-app.use(webpackHotMiddleware(compiler));
-
-// Enable webpack-dev-middleware
-app.use(
-  webpackDevMiddleware(compiler, {
+// Webpack HMR — development only
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack')
+  const webpackConfig = require('./webpack.config')
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const webpackHotMiddleware = require('webpack-hot-middleware')
+  const compiler = webpack(webpackConfig)
+  app.use(webpackHotMiddleware(compiler))
+  app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
     stats: 'errors-only',
-  })
-);
+  }))
+}
 
 const defaultOrigins = [
-  "http://localhost:3000",
-  "http://localhost:3001",
+  "http://localhost:8081",
+  "http://localhost:8082",
   "https://digital-invite-202301.digicraft.link",
   "https://digital-invite-202401.digicraft.link",
   "https://digital-invite.digicraft.link",
@@ -71,7 +69,3 @@ app.listen(port, () => console.log(`Server started on port ${port}`));
 app.use('/api/rsvp', require('./routes/rsvp'));
 app.use('/api/wish', require('./routes/wish'));
 
-// Enable HMR
-if (module.hot) {
-  module.hot.accept();
-}
