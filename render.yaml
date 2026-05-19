@@ -3,9 +3,12 @@ services:
     name: Digicraft API Processor
     env: node
     plan: free
+    runtime: node
     buildCommand: npm install
     startCommand: node ./index.js
     envVars:
+      - key: NODE_VERSION
+        value: 18
       - key: NODE_ENV
         value: production
       - key: PORT
